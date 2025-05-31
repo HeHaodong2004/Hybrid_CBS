@@ -87,17 +87,17 @@ class GridEnv:
         next_pos = (self.pos[0] + dr, self.pos[1] + dc)
         self.step_count += 1
 
-        reward = -0.5; done = False
+        reward = -0.3; done = False
         if not self.grid.in_bounds(next_pos) or not self.grid.passable(next_pos) or \
            (self.step_count, next_pos) in self.constraints:
             reward += -1.0; new_phi = old_phi
         else:
             self.pos = next_pos
             new_dist = abs(next_pos[0]-self.goal[0]) + abs(next_pos[1]-self.goal[1])
-            reward  += (old_dist - new_dist)
+            reward  += 0.5 * (old_dist - new_dist)
             new_phi  = -self.dist_map[next_pos[0], next_pos[1]]
             if self.pos == self.goal:
-                reward += 30.0; done = True
+                reward += 40.0; done = True
         if self.step_count >= self.max_steps:
             done = True
         shaped = reward + self.gamma * new_phi - old_phi
@@ -126,6 +126,7 @@ class EnhancedDuelingDQN(nn.Module):
         )
         self.res1 = ResidualBlock(128)
         self.res2 = ResidualBlock(128)
+        self.res3 = ResidualBlock(128)
         self.value_stream = nn.Sequential(nn.Linear(128,64), nn.ReLU(), nn.Linear(64,1))
         self.adv_stream   = nn.Sequential(nn.Linear(128,64), nn.ReLU(), nn.Linear(64,output_dim))
 
@@ -134,6 +135,7 @@ class EnhancedDuelingDQN(nn.Module):
         f = self.fc(c)
         f = self.res1(f)
         f = self.res2(f)
+        f = self.res3(f)
         v = self.value_stream(f)
         a = self.adv_stream(f)
         return v + (a - a.mean(dim=1, keepdim=True))
@@ -157,7 +159,7 @@ def train_dqn(width, height, episodes=500, batch_size=64,
     target.load_state_dict(policy.state_dict())
     optimizer = optim.Adam(policy.parameters(), lr=lr)
     buffer = ReplayBuffer(10000)
-    eps_s, eps_e, eps_d = 1.0, 0.05, episodes/2
+    eps_s, eps_e, eps_d = 1.0, 0.01, episodes/2
     best, recent = -inf, deque(maxlen=50)
 
     for ep in range(1, episodes+1):
@@ -225,7 +227,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--width',    type=int, default=8)
     parser.add_argument('--height',   type=int, default=8)
-    parser.add_argument('--episodes', type=int, default=1500)
+    parser.add_argument('--episodes', type=int, default=15000)
     parser.add_argument('--obstacles',type=int, default=10)
     args = parser.parse_args()
     train_dqn(args.width, args.height, args.episodes, num_obs=args.obstacles)
