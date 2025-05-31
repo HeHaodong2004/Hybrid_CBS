@@ -172,7 +172,7 @@ def rl_plan_batched(
     best = min(valid_paths, key=lambda p: len(p))
     return best
 
-# --- RRT* Planner (no diagonals) + A* as backup ---
+# --- RRT* Planner (no rewiring) + A* as backup ---
 def rrt_star_plan(
     grid: GridWorld,
     start: Position,
