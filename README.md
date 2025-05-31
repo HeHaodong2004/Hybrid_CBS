@@ -4,6 +4,13 @@ This repository contains an implementation of a hybrid CBS (Conflict-Based Searc
 **RRT\***, **Reinforcement Learning (RL)**, and **A\***.  
 The project demonstrates flexible multi-agent path planning capabilities, leveraging the strengths of different methods for more robust performance.
 
+
+## 🎥 Example Animation
+
+Here’s a quick example of the path planning animation:
+
+<img src="media/mixed_cbs.gif" alt="Example Animation" width="500"/>
+
 ---
 
 ## 📂 Files
