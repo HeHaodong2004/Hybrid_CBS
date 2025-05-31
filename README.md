@@ -25,17 +25,21 @@ The project demonstrates flexible multi-agent path planning capabilities, levera
 ## ▶️ How to Run
 
 ### 1️⃣ Train the RL Planner
-\`\`\`bash
-python RL_train.py
-\`\`\`
+
+To train the RL planner, run the following command in your terminal:
+`` python RL_train.py
+`` 
 
 ### 2️⃣ Test CBS with RRT*, RL, and A* for Multi-Agent Planning
-\`\`\`bash
-python CBS.py
-\`\`\`
-You can switch between different low-level planners within the \`CBS.py\` script.
+
+To test the CBS framework with your choice of RRT*, RL, or A*, run:
+`` python CBS.py
+`` 
+
+You can configure which low-level planner to use within the `CBS.py` script by modifying the corresponding parameters.
 
 ---
+
 
 ## 💡 Notes
 
