@@ -7,7 +7,7 @@ The project demonstrates flexible multi-agent path planning capabilities, levera
 
 ## 🎥 Example Animation
 
-Here’s a quick example of the path planning animation:
+Here’s a quick example of the path planning animation(16 agents, 25% occupancy rate):
 
 <img src="media/mixed_cbs.gif" alt="Example Animation" width="500"/>
 
