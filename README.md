@@ -1,6 +1,8 @@
-# Hybrid CBS Project with RL and A*
+# Hybrid CBS Project with RRT*, RL, and A*
 
-This repository contains an implementation of a hybrid CBS (Conflict-Based Search) planner that integrates reinforcement learning (RL) and A* as low-level planners. The project allows for both single-agent and multi-agent path planning, leveraging the strengths of different methods.
+This repository contains an implementation of a hybrid CBS (Conflict-Based Search) planner that integrates three different low-level planners:  
+**RRT\***, **Reinforcement Learning (RL)**, and **A\***.  
+The project demonstrates flexible multi-agent path planning capabilities, leveraging the strengths of different methods for more robust performance.
 
 ---
 
@@ -9,51 +11,34 @@ This repository contains an implementation of a hybrid CBS (Conflict-Based Searc
 - **`RL_train.py`**  
   Train the RL planner (Rainbow DQN) for single-agent scenarios.
 
-- **`RL_test.py`**  
-  Test the performance of the trained RL planner in single-agent planning tasks.
-
-- **`RL_CBS.py`**  
-  Test the performance of the RL-integrated CBS framework in multi-agent scenarios, using RL as the low-level planner.
-
 - **`CBS.py`**  
-  Test CBS with flexible low-level planners (RL and A*), demonstrating the hybrid multi-agent planning capability.
+  Test the CBS framework in multi-agent scenarios with flexible low-level planners (RRT\*, RL, and A\*).
 
-- **`best_25.98.pth`**  
+- **`best_47.42.pth`**  
   Pre-trained model weights for the RL planner.
+
+- **`README.md`**  
+  This file, containing an overview of the project and usage instructions.
 
 ---
 
 ## ▶️ How to Run
 
 ### 1️⃣ Train the RL Planner
-
-```bash
+\`\`\`bash
 python RL_train.py
-```
+\`\`\`
 
-### 2️⃣ Test Single-Agent RL Planning
-
-```bash
-python RL_test.py
-```
-
-### 3️⃣ Test Hybrid CBS with RL for Multi-Agent Planning
-
-```bash
-python RL_CBS.py
-```
-
-### 4️⃣ Test CBS with RL and A* for Multi-Agent Planning
-
-```bash
+### 2️⃣ Test CBS with RRT*, RL, and A* for Multi-Agent Planning
+\`\`\`bash
 python CBS.py
-```
+\`\`\`
+You can switch between different low-level planners within the \`CBS.py\` script.
 
 ---
 
 ## 💡 Notes
 
-- Make sure to have the required Python dependencies installed (e.g., `torch`, `numpy`, `matplotlib`, etc.).
-- You can switch between different low-level planners (RL or A*) in `CBS.py` as needed.
-- The repository also includes the pre-trained model (`best_25.98.pth`) for testing the RL planner.
-- Feel free to modify the scripts for your own experiments or extend the project further!
+- Make sure to have the required Python dependencies installed (e.g., \`torch\`, \`numpy\`, \`matplotlib\`, etc.).
+- The \`best_47.42.pth\` file contains the trained RL model for immediate testing.
+- Feel free to modify the scripts for your own experiments or to extend the project further!
